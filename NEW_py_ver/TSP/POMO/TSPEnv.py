@@ -91,6 +91,9 @@ class TSPEnv:
         self.selected_count += 1
         self.current_node = selected
         # shape: (batch, pomo)
+        
+        self.selected_node_list = self.selected_node_list.to(selected.device)
+        
         self.selected_node_list = torch.cat((self.selected_node_list, self.current_node[:, :, None]), dim=2)
         # shape: (batch, pomo, 0~problem)
 
