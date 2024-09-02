@@ -117,6 +117,8 @@ class TSPEnv:
         # shape: (batch, pomo, problem, 2)
         seq_expanded = self.problems[:, None, :, :].expand(self.batch_size, self.pomo_size, self.problem_size, 2)
 
+        gathering_index = gathering_index.to(seq_expanded.device)
+        
         ordered_seq = seq_expanded.gather(dim=2, index=gathering_index)
         # shape: (batch, pomo, problem, 2)
 
